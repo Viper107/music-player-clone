@@ -23,7 +23,7 @@ async function getsongs(folder) {
     songUL.innerHTML =
       songUL.innerHTML +
       `<li>
-                            <img class="invert" src="/img/music.svg" alt="music icon">
+                            <img class="invert" src="img/music.svg" alt="music icon">
                             <div class="info">
                                 <div> ${song.replace(
                                   "-128-ytshorts.savetube.me",
@@ -34,7 +34,7 @@ async function getsongs(folder) {
                             <div class="playnow">
 
                                 <span>Play Now</span>
-                                <img src="/img/play.svg"  alt="">
+                                <img src="img/play.svg"  alt="">
                             </div>
                             
                         </li>`;
@@ -58,7 +58,7 @@ const playsongs = (track, pause = false) => {
   currentSong.src = `/${currFolder}/` + track;
   if (!pause) {
     currentSong.play();
-    play.src = "/img/paused.svg";
+    play.src = "img/paused.svg";
   }
   document.querySelector(".songinfo").innerHTML = track;
   document.querySelector(".songtime").innerHTML = "";
@@ -132,10 +132,10 @@ async function main() {
   play.addEventListener("click", () => {
     if (currentSong.paused) {
       currentSong.play();
-      play.src = "/img/paused.svg";
+      play.src = "img/paused.svg";
     } else {
       currentSong.pause();
-      play.src = "/img/play.svg";
+      play.src = "img/play.svg";
     }
   });
 
@@ -210,3 +210,4 @@ async function main() {
 }
 
 main();
+
