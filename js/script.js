@@ -2,7 +2,7 @@ console.log("Initializing javascript....");
 let currFolder;
 async function getsongs(folder) {
   currFolder = folder;
-  let a = await fetch(`http://127.0.0.1:3000/${currFolder}`);
+  let a = await fetch(`Songs/${currFolder}`);
   let response = await a.text();
   let div = document.createElement("div");
   div.innerHTML = response;
@@ -23,7 +23,7 @@ async function getsongs(folder) {
     songUL.innerHTML =
       songUL.innerHTML +
       `<li>
-                            <img class="invert" src="img/music.svg" alt="music icon">
+                            <img class="invert" src="/img/music.svg" alt="music icon">
                             <div class="info">
                                 <div> ${song.replace(
                                   "-128-ytshorts.savetube.me",
@@ -34,7 +34,7 @@ async function getsongs(folder) {
                             <div class="playnow">
 
                                 <span>Play Now</span>
-                                <img src="img/play.svg"  alt="">
+                                <img src="/img/play.svg"  alt="">
                             </div>
                             
                         </li>`;
@@ -58,7 +58,7 @@ const playsongs = (track, pause = false) => {
   currentSong.src = `/${currFolder}/` + track;
   if (!pause) {
     currentSong.play();
-    play.src = "img/paused.svg";
+    play.src = "/img/paused.svg";
   }
   document.querySelector(".songinfo").innerHTML = track;
   document.querySelector(".songtime").innerHTML = "";
@@ -76,7 +76,7 @@ function secondsToMinutesSeconds(totalSeconds) {
 }
 
 async function displayAlbums() {
-  let a = await fetch(`http://127.0.0.1:3000/songs`);
+  let a = await fetch(`Songs/songs`);
   let response = await a.text();
   let div = document.createElement("div");
   div.innerHTML = response;
@@ -89,7 +89,7 @@ async function displayAlbums() {
 
     if(e.href.includes("/songs")){
         let folder =e.href.split('/').slice(-2)[0];
-        let a = await fetch(`http://127.0.0.1:3000/songs/${folder}/info.json`);
+        let a = await fetch(`Songs/songs/${folder}/info.json`);
         let response = await a.json();
         cardContainer.innerHTML = cardContainer.innerHTML + `<div class="card bradius"  data-folder="${folder}">
                         <div class="svg">
@@ -132,10 +132,10 @@ async function main() {
   play.addEventListener("click", () => {
     if (currentSong.paused) {
       currentSong.play();
-      play.src = "img/paused.svg";
+      play.src = "/img/paused.svg";
     } else {
       currentSong.pause();
-      play.src = "img/play.svg";
+      play.src = "/img/play.svg";
     }
   });
 
@@ -210,4 +210,3 @@ async function main() {
 }
 
 main();
-
