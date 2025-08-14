@@ -102,7 +102,7 @@ async function displayAlbums() {
                         </div>
                         
 
-                        <img src="/songs/${folder}/cover.jpg" class="bradius">
+                        <img src="songs/${folder}/cover.jpg" class="bradius">
                         <h2>${response.title}</h2>
                         <p>${response.description}</p>
 
@@ -210,4 +210,5 @@ async function main() {
 }
 
 main();
+
 
