@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" 
+     viewBox="0 0 24 24" 
+     width="48" height="48" 
+     fill="none" 
+     stroke="green" 
+     stroke-width="2" 
+     stroke-linecap="round" 
+     stroke-linejoin="round">
+  <!-- Speaker -->
+  <path d="M9 9H5v6h4l5 4V5l-5 4z"/>
+  
+  <!-- Mute slash -->
+  <line x1="21" y1="3" x2="3" y2="21" />
+</svg>
