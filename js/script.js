@@ -2,51 +2,31 @@ console.log("Initializing javascript....");
 let currFolder;
 async function getsongs(folder) {
   currFolder = folder;
-  let a = await fetch(currFolder);
-  let response = await a.text();
-  let div = document.createElement("div");
-  div.innerHTML = response;
-  let as = div.getElementsByTagName("a");
-  songs = [];
-  for (let index = 0; index < as.length; index++) {
-    const element = as[index];
-    if (element.href.endsWith(".mp3")) {
-      songs.push(element.href.split(`/${currFolder}/`)[1]);
-    }
-  }
+  let a = await fetch(`${folder}/info.json`);
+  let response = await a.json();
+  songs = response.songs;
 
-  let songUL = document
-    .querySelector(".songlist")
-    .getElementsByTagName("ul")[0];
+  let songUL = document.querySelector(".songlist ul");
   songUL.innerHTML = "";
-  for (const song of songs) {
-    songUL.innerHTML =
-      songUL.innerHTML +
-      `<li>
-                            <img class="invert" src="img/music.svg" alt="music icon">
-                            <div class="info">
-                                <div> ${song.replace(
-                                  "-128-ytshorts.savetube.me",
-                                  ""
-                                )} </div>
-                                <div>Unkown</div>
-                            </div>
-                            <div class="playnow">
 
-                                <span>Play Now</span>
-                                <img src="img/play.svg"  alt="">
-                            </div>
-                            
-                        </li>`;
+  for (const song of songs) {
+    songUL.innerHTML += `
+      <li>
+        <img class="invert" src="/img/music.svg" alt="music icon">
+        <div class="info">
+          <div>${song.replace("-128-ytshorts.savetube.me", "")}</div>
+          <div>Unknown</div>
+        </div>
+        <div class="playnow">
+          <span>Play Now</span>
+          <img src="/img/play.svg" alt="">
+        </div>
+      </li>`;
   }
 
-  //Attach an event to the listner
-  Array.from(
-    document.querySelector(".songlist").getElementsByTagName("li")
-  ).forEach((e) => {
-    e.addEventListener("click", (element) => {
-      playsongs(e.querySelector(".info").firstElementChild.innerHTML.trim());
-    });
+  // attach event listener
+  document.querySelectorAll(".songlist li").forEach((e, i) => {
+    e.addEventListener("click", () => playsongs(songs[i]));
   });
 
   return songs;
@@ -210,6 +190,7 @@ async function main() {
 }
 
 main();
+
 
 
 
