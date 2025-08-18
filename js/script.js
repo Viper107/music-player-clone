@@ -2,7 +2,7 @@ console.log("Initializing javascript....");
 let currFolder;
 async function getsongs(folder) {
   currFolder = folder;
-  let a = await fetch(`Songs/${currFolder}`);
+  let a = await fetch(currFolder);
   let response = await a.text();
   let div = document.createElement("div");
   div.innerHTML = response;
@@ -210,5 +210,6 @@ async function main() {
 }
 
 main();
+
 
 
